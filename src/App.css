@@ -1,0 +1,684 @@
+
+/* ==================================================
+1. GOOGLE FONTS
+================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
+
+
+/* ==================================================
+2. GLOBAL SETTINGS & RESET
+================================================== */
+
+:root {
+    font-family: 'DM Sans', sans-serif;
+    color: #18382c;
+    background: #f3f6fa;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+
+/* ==================================================
+3. MAIN PAGE LAYOUT
+================================================== */
+
+.page-shell {
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 34px 22px 48px;
+}
+
+
+/* ==================================================
+4. BRAND HEADER
+================================================== */
+
+.brand-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: #17365d;
+    color: #fff;
+    padding: 28px;
+    border-radius: 18px;
+    box-shadow: 0 12px 30px #17365d1a;
+}
+
+/* Brand logo / icon container */
+
+.brand-mark {
+    display: grid;
+    place-items: center;
+    flex: 0 0 56px;
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: #ffffff1a;
+}
+
+/* Small text above the main heading */
+
+.eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin: 0 0 7px;
+    color: #bcd6f5;
+}
+
+/* Main page heading */
+
+.brand-header h1 {
+    font: 800 clamp(23px, 4vw, 34px) / 1.2 Manrope, sans-serif;
+    margin: 0;
+}
+
+/* Header description */
+
+.subtitle {
+    margin: 9px 0 0;
+    color: #e0eaf7;
+}
+
+
+/* ==================================================
+   5. PRIVACY NOTICE
+================================================== */
+
+.privacy-note {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: #fff;
+    border: 1px solid #dce5f0;
+    border-radius: 12px;
+    padding: 15px 18px;
+    margin: 20px 0;
+    color: #43546b;
+}
+
+/* Privacy notice icon */
+
+.privacy-note svg {
+    color: #1d5c8f;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* Privacy notice paragraph */
+
+.privacy-note p {
+    margin: 0;
+    line-height: 1.55;
+    font-size: 13px;
+}
+
+
+/* ==================================================
+   6. FORM SECTIONS
+================================================== */
+
+.form-section {
+    background: #fff;
+    border: 1px solid #e0e7f0;
+    border-radius: 16px;
+    padding: 25px;
+    margin: 18px 0;
+    box-shadow: 0 5px 16px #13294b08;
+}
+
+
+/* ==================================================
+   7. SECTION HEADINGS & NUMBERS
+================================================== */
+
+.section-heading {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    border-bottom: 1px solid #e9eef5;
+    padding-bottom: 17px;
+    margin-bottom: 21px;
+}
+
+/* Number displayed beside each section heading */
+
+.section-number {
+    display: grid;
+    place-items: center;
+    min-width: 39px;
+    height: 39px;
+    border-radius: 11px;
+    background: #e9f1fb;
+    color: #17365d;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+/* Section title */
+
+.section-heading h2 {
+    font: 700 20px / 1.3 Manrope, sans-serif;
+    margin: 2px 0 5px;
+    color: #17365d;
+}
+
+/* Section description */
+
+.section-heading p {
+    margin: 0;
+    color: #6a788a;
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+
+/* ==================================================
+   8. FORM GRID & FIELD LAYOUT
+================================================== */
+
+.field-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 20px;
+}
+
+/* Individual form field */
+
+.field {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+/* Field that spans the entire row */
+
+.field-full {
+    grid-column: 1 / -1;
+}
+
+
+/* ==================================================
+   9. LABELS & REQUIRED INDICATORS
+================================================== */
+
+.field label,
+.choice-group legend {
+    font-size: 13px;
+    font-weight: 700;
+    color: #29384d;
+}
+
+/* Red asterisk or required indicator */
+
+.required {
+    color: #bd3543;
+}
+
+
+/* ==================================================
+   10. INPUTS, SELECTS & TEXTAREAS
+================================================== */
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    min-height: 43px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font: 400 14px 'DM Sans', sans-serif;
+    color: #182538;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+/* Textarea sizing */
+
+.field textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+/* Focus effects when a user clicks an input */
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    border-color: #3976b9;
+    box-shadow: 0 0 0 3px #3976b91a;
+}
+
+/* Small helper text beneath fields */
+
+.field small {
+    font-size: 11px;
+    color: #77869a;
+}
+
+
+/* ==================================================
+   11. RADIO BUTTONS, CHECKBOXES & CHOICE GROUPS
+================================================== */
+
+.choice-group {
+    border: 1px solid #e1e8f0;
+    border-radius: 10px;
+    padding: 13px 14px 14px;
+    margin: 0;
+    min-width: 0;
+}
+
+/* Choice group title */
+
+.choice-group legend {
+    padding: 0 5px;
+    line-height: 1.5;
+}
+
+/* Container for the available choices */
+
+.choice-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 18px;
+    padding-top: 5px;
+}
+
+/* Individual choice label */
+
+.choice {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #405067;
+    max-width: 100%;
+    cursor: pointer;
+}
+
+/* Radio buttons and checkboxes */
+
+.choice input {
+    margin: 3px 0 0;
+    accent-color: #17365d;
+    flex-shrink: 0;
+}
+
+
+/* ==================================================
+   12. REPEATED CARDS
+================================================== */
+
+.repeat-card {
+    border: 1px solid #e3eaf2;
+    background: #f9fbfd;
+    border-radius: 12px;
+    padding: 17px;
+    margin: 0 0 2px;
+}
+
+/* Repeated card headings and legal headings */
+
+.repeat-card h3,
+.legal-copy h3 {
+    font: 700 14px Manrope, sans-serif;
+    color: #24496f;
+    margin: 0 0 14px;
+}
+
+/* Adjust spacing inside repeated cards */
+
+.repeat-card .field-grid {
+    gap: 14px 16px;
+}
+
+
+/* ==================================================
+   13. LEGAL INFORMATION / TERMS & CONDITIONS
+================================================== */
+
+.legal-copy {
+    background: #f8fafc;
+    border: 1px solid #e3eaf2;
+    border-radius: 10px;
+    padding: 17px;
+    color: #536176;
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+/* Legal information headings */
+
+.legal-copy h3 {
+    margin: 12px 0 5px;
+}
+
+/* Remove top margin from the first heading */
+
+.legal-copy h3:first-child {
+    margin-top: 0;
+}
+
+/* Legal information paragraphs */
+
+.legal-copy p {
+    margin: 0 0 10px;
+}
+
+/* General form instructions */
+
+.form-help {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #65748a;
+    margin: 0;
+}
+
+
+/* ==================================================
+   14. SUBMISSION PANEL
+================================================== */
+
+.submit-panel {
+    background: #edf3fa;
+    border: 1px solid #d6e3f2;
+    border-radius: 16px;
+    padding: 25px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 18px;
+}
+
+/* Submission panel heading */
+
+.submit-panel h2 {
+    font: 700 20px Manrope, sans-serif;
+    color: #17365d;
+    margin: 0 0 7px;
+}
+
+/* Submission panel description */
+
+.submit-panel p {
+    font-size: 13px;
+    color: #586a80;
+    line-height: 1.55;
+    margin: 0;
+}
+
+
+/* ==================================================
+   15. SUBMIT BUTTON
+================================================== */
+
+.submit-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 0;
+    border-radius: 9px;
+    background: #17365d;
+    color: #fff;
+    font: 700 14px 'DM Sans', sans-serif;
+    padding: 14px 20px;
+    cursor: pointer;
+    min-height: 48px;
+}
+
+/* Button hover effect */
+
+.submit-button:hover {
+    background: #24517f;
+}
+
+/* Button appearance when disabled */
+
+.submit-button:disabled {
+    opacity: 0.65;
+    cursor: wait;
+}
+
+
+/* ==================================================
+   16. SMALL PRINT / FOOTNOTES
+================================================== */
+
+.small-print {
+    grid-column: 1 / -1;
+    padding-top: 14px !important;
+    border-top: 1px solid #d5e0ed;
+}
+
+
+/* ==================================================
+   17. SUCCESS & ERROR STATUS MESSAGES
+================================================== */
+
+.status-message {
+    padding: 14px 16px;
+    border-radius: 10px;
+    margin: 16px 0;
+    font-size: 14px;
+}
+
+/* Success message */
+
+.status-message.success {
+    background: #e8f7ee;
+    border: 1px solid #b9e5c9;
+    color: #176638;
+}
+
+/* Error message */
+
+.status-message.error {
+    background: #fff0f0;
+    border: 1px solid #f0c5c5;
+    color: #9d2424;
+}
+
+
+/* ==================================================
+   18. FOOTER
+================================================== */
+
+footer {
+    text-align: center;
+    font-size: 12px;
+    color: #8290a2;
+    padding: 26px 0 0;
+}
+
+
+/* ==================================================
+   19. RESPONSIVE DESIGN / MOBILE DEVICES
+================================================== */
+
+@media (max-width: 650px) {
+
+    /* Main page layout */
+
+    .page-shell {
+        padding: 16px 11px 30px;
+    }
+
+    /* Header adjustments */
+
+    .brand-header {
+        padding: 21px 17px;
+        gap: 12px;
+        align-items: flex-start;
+    }
+
+    /* Smaller brand icon */
+
+    .brand-mark {
+        width: 43px;
+        height: 43px;
+        flex-basis: 43px;
+    }
+
+    /* Header title */
+
+    .brand-header h1 {
+        font-size: 23px;
+    }
+
+    /* Form section spacing */
+
+    .form-section {
+        padding: 18px 14px;
+    }
+
+    /* Stack form fields vertically */
+
+    .field-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    /* Full-width fields no longer need to span columns */
+
+    .field-full {
+        grid-column: auto;
+    }
+
+    /* Smaller section headings */
+
+    .section-heading h2 {
+        font-size: 18px;
+    }
+
+    /* Stack submission panel content */
+
+    .submit-panel {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    /* Full-width submit button */
+
+    .submit-button {
+        width: 100%;
+    }
+
+    /* Small print adjustment */
+
+    .small-print {
+        grid-column: auto;
+    }
+
+    /* Adjust spacing between choices */
+
+    .choice-list {
+        gap: 10px 14px;
+    }
+}
+
+
+
+
+
+
+/* =========================================
+   SUPPORT7CARE BRAND COLOUR OVERRIDES
+Brand green taken from the Word theme
+========================================= */
+
+:root {
+    --brand-green: #196B24;
+    --brand-green-hover: #14551D;
+    --brand-green-light: #EAF3EB;
+    --brand-green-border: #C8DEC9;
+}
+
+/* Main application header */
+.brand-header {
+    background: var(--brand-green);
+    box-shadow: 0 12px 30px #196B241A;
+}
+
+/* Small text above the main heading */
+.eyebrow {
+    color: #E0F0E2;
+}
+
+/* Privacy notice icon */
+.privacy-note svg {
+    color: var(--brand-green);
+}
+
+/* Section number badges */
+.section-number {
+    background: var(--brand-green-light);
+    color: var(--brand-green);
+}
+
+/* Section headings */
+.section-heading h2 {
+    color: var(--brand-green);
+}
+
+/* Input, select and textarea focus effects */
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    border-color: var(--brand-green);
+    box-shadow: 0 0 0 3px #196B241A;
+}
+
+/* Radio buttons and checkboxes */
+.choice input {
+    accent-color: var(--brand-green);
+}
+
+/* Repeated card and legal headings */
+.repeat-card h3,
+.legal-copy h3 {
+    color: var(--brand-green);
+}
+
+/* Submission panel */
+.submit-panel {
+    background: var(--brand-green-light);
+    border-color: var(--brand-green-border);
+}
+
+/* Submission panel heading */
+.submit-panel h2 {
+    color: var(--brand-green);
+}
+
+/* Submit button */
+.submit-button {
+    background: var(--brand-green);
+    color: #FFFFFF;
+    transition: background-color 0.2s ease;
+}
+
+/* Submit button hover */
+.submit-button:hover {
+    background: var(--brand-green-hover);
+}
+
+/* Keyboard accessibility */
+.submit-button:focus-visible {
+    outline: 3px solid #196B2466;
+    outline-offset: 3px;
+}
