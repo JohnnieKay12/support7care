@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ShieldCheck, Send, ClipboardList } from 'lucide-react';
 
-const recruitmentEmail = 'leviemmanuel2@gmail.com';
+const recruitmentEmail = 'leviemmanuel25@gmail.com';
 
 function Field({ label, name, type = 'text', required = false, options, hint, full = false }) {
   return <div className={`field ${full ? 'field-full' : ''}`}>
