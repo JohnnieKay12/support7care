@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ShieldCheck, Send, ClipboardList } from 'lucide-react';
 
-const recruitmentEmail = 'recruitment@support7care.co.uk';
+const recruitmentEmail = 'johnnieuc1@gmail.com';
 
 function Field({ label, name, type = 'text', required = false, options, hint, full = false }) {
   return <div className={`field ${full ? 'field-full' : ''}`}>
@@ -45,7 +45,7 @@ function App() {
       else application[key] = value;
     }
     try {
-      const response = await fetch('/api/applications', {
+      const response = await fetch('https://support7care.onrender.com/api/applications', {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(application)
       });
       const result = await response.json().catch(() => ({}));
