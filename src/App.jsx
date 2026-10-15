@@ -222,7 +222,7 @@ function App() {
         <ChoiceGroup legend="I confirm this final declaration" name="finalDeclarationConfirmed" options={['I confirm']} type="checkbox" required />
       </Section>
 
-      <div className="submit-panel"><div><h2>Ready to submit?</h2><p>Please review your answers. By selecting Submit Application, the details will be sent to the employer's configured recruitment email through the backend.</p></div>
+      <div className="submit-panel"><div><h2>Ready to submit?</h2><p>Please review your answers. By selecting Submit Application, the details will be sent to the employer's configured recruitment email.</p></div>
         <button className="submit-button" type="submit" disabled={sending}>{sending ? 'Submitting…' : 'Submit Application'} <Send size={18} /></button>
         <p className="small-print">Company: Support7Care Limited · First Floor Winton House, Stoke Road, Stoke-on-Trent, ST4 2RW · Company No. 11360660</p>
       </div>
