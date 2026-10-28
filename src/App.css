@@ -682,3 +682,159 @@ Brand green taken from the Word theme
     outline: 3px solid #196B2466;
     outline-offset: 3px;
 }
+
+
+
+/* =========================================
+   DYNAMIC REFEREE SECTION
+========================================= */
+
+/* Referee card heading and remove button */
+.referee-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.referee-card-header h3 {
+    margin: 0;
+    color: var(--brand-green);
+    font: 700 14px Manrope, sans-serif;
+}
+
+/* Container for the add button and help text */
+.referee-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+/* Add another referee button */
+.add-referee-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 12px 18px;
+
+    background: var(--brand-green);
+    color: #fff;
+
+    border: none;
+    border-radius: 8px;
+
+    font: 700 14px 'DM Sans', sans-serif;
+
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.add-referee-button:hover {
+    background: var(--brand-green-hover);
+}
+
+/* Remove referee button */
+.remove-referee-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 8px 13px;
+
+    background: #fff;
+    color: #b42318;
+
+    border: 1px solid #f0b8b4;
+    border-radius: 7px;
+
+    font: 600 12px 'DM Sans', sans-serif;
+
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.remove-referee-button:hover {
+    background: #fff0ef;
+}
+
+/* Supporting text */
+.referee-help {
+    margin: 0;
+    color: #64748b;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* Keyboard accessibility */
+.add-referee-button:focus-visible,
+.remove-referee-button:focus-visible {
+    outline: 3px solid #196B2466;
+    outline-offset: 3px;
+}
+
+/* Mobile layout */
+@media (max-width: 650px) {
+    .referee-card-header {
+        align-items: flex-start;
+    }
+
+    .add-referee-button {
+        width: 100%;
+    }
+}
+
+
+
+
+/* Previous Employment add/remove controls */
+
+.repeat-card-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.repeat-card-heading h3 {
+  margin: 0;
+}
+
+.add-button,
+.remove-button {
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font: 600 13px 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.add-button {
+  background: var(--brand-green);
+  color: #fff;
+}
+
+.add-button:hover {
+  background: var(--brand-green-hover);
+}
+
+.remove-button {
+  background: #fff0f0;
+  color: #a12626;
+  border: 1px solid #f0c5c5;
+}
+
+.remove-button:hover {
+  background: #ffe0e0;
+}
+
+.add-button:focus-visible,
+.remove-button:focus-visible {
+  outline: 3px solid #196B2466;
+  outline-offset: 3px;
+}

@@ -6,7 +6,12 @@ import { Resend } from 'resend';
 
 const app = express();
 const port = Number(process.env.PORT || 4000);
-app.use(cors({ origin: process.env.FRONTEND_ORIGIN || 'http://localhost:5173' }));
+app.use(cors({ 
+  origin: [
+    'https://support7care.vercel.app',
+    'http://localhost:5173'
+  ]
+}));
 app.use(express.json({ limit: '100kb' }));
 
 const allowedKeys = new Set([

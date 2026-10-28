@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ShieldCheck, Send, ClipboardList } from 'lucide-react';
 
-const recruitmentEmail = 'leviemmanuel25@gmail.com';
+const recruitmentEmail = 'levi@support7care.co.uk';
 
 function Field({ label, name, type = 'text', required = false, options, hint, full = false }) {
   return <div className={`field ${full ? 'field-full' : ''}`}>
@@ -32,6 +32,31 @@ function Section({ number, title, description, children }) {
 function App() {
   const [status, setStatus] = useState({ kind: '', message: '' });
   const [sending, setSending] = useState(false);
+
+  const [employmentCount, setEmploymentCount] = useState(2);
+
+  // Keep the first two referees and allow additional referees to be added.
+  const [referees, setReferees] = useState([1, 2]);
+  const [nextRefereeId, setNextRefereeId] = useState(3);
+
+  // Add another referee.
+  function addReferee() {
+    setReferees((currentReferees) => [
+      ...currentReferees,
+      nextRefereeId,
+    ]);
+
+    setNextRefereeId((currentId) => currentId + 1);
+  }
+
+  // Remove an additional referee without removing the first two.
+  function removeReferee(id) {
+    if (id <= 2) return;
+
+    setReferees((currentReferees) =>
+      currentReferees.filter((refereeId) => refereeId !== id)
+    );
+  }
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -98,28 +123,184 @@ function App() {
         <Field label="Post Code" name="nextOfKinPostCode" />
       </Section>
 
-      <Section number="03" title="Previous Employment" description="A minimum of 5 years of full employment history. Start with your most recent employment and explain any gaps in each year.">
-        {[1,2,3,4,5].map((n) => <div className="repeat-card field-full" key={n}><h3>Employment {n}</h3><div className="field-grid">
-          <Field label="Start Date" name={`employment${n}StartDate`} type="date" />
-          <Field label="End Date" name={`employment${n}EndDate`} type="date" />
-          <Field label="Employment Company" name={`employment${n}Company`} />
-          <Field label="Position Held" name={`employment${n}Position`} />
-          <Field label="Reason for Leaving / Employment Gap" name={`employment${n}ReasonForLeaving`} full />
-        </div></div>)}
+      
+      <Section
+        number="03"
+        title="Previous Employment"
+        description="A minimum of 5 years of full employment history. Start with your most recent employment and explain any gaps in each year."
+      >
+        {Array.from({ length: employmentCount }, (_, index) => {
+          const n = index + 1;
+
+          return (
+            <div className="repeat-card field-full" key={n}>
+              <div className="repeat-card-heading">
+                <h3>Employment {n}</h3>
+
+                {n > 2 && (
+                  <button
+                    type="button"
+                    className="remove-button"
+                    onClick={() =>
+                      setEmploymentCount((count) =>
+                        Math.max(2, count - 1)
+                      )
+                    }
+                  >
+                    Remove
+                  </button>
+                )}
+              </div>
+
+              <div className="field-grid">
+                <Field
+                  label="Start Date"
+                  name={`employment${n}StartDate`}
+                  type="date"
+                />
+
+                <Field
+                  label="End Date"
+                  name={`employment${n}EndDate`}
+                  type="date"
+                />
+
+                <Field
+                  label="Employment Company"
+                  name={`employment${n}Company`}
+                />
+
+                <Field
+                  label="Position Held"
+                  name={`employment${n}Position`}
+                />
+
+                <Field
+                  label="Reason for Leaving / Employment Gap"
+                  name={`employment${n}ReasonForLeaving`}
+                  full
+                />
+              </div>
+            </div>
+          );
+        })}
+
+        {employmentCount < 5 && (
+          <div className="field-full">
+            <button
+              type="button"
+              className="add-button"
+              onClick={() =>
+                setEmploymentCount((count) =>
+                  Math.min(5, count + 1)
+                )
+              }
+            >
+              + Add Employment
+            </button>
+          </div>
+        )}
       </Section>
 
-      <Section number="04" title="Reference Details" description="Provide details of at least two professional referees. One must be your present or most recent employer. Work email addresses are required.">
-        {[1,2,3].map((n) => <div className="repeat-card field-full" key={n}><h3>Referee {n}{n < 3 ? ' (required)' : ' (optional)'}</h3><div className="field-grid">
-          <Field label="Name of Employer" name={`referee${n}Employer`} required={n < 3} />
-          <Field label="Referee's Full Name" name={`referee${n}FullName`} required={n < 3} />
-          <Field label="Work Email Address" name={`referee${n}Email`} type="email" required={n < 3} />
-          <Field label="Phone No." name={`referee${n}Phone`} type="tel" />
-          <Field label="Address" name={`referee${n}Address`} />
-          <Field label="Post Code" name={`referee${n}PostCode`} />
-          <Field label="Start Date" name={`referee${n}StartDate`} type="date" />
-          <Field label="End Date" name={`referee${n}EndDate`} type="date" />
-        </div></div>)}
-        <ChoiceGroup legend="I permit the agency to contact the referees above" name="permissionToContactReferees" options={['Yes, I permit contact']} type="checkbox" />
+
+      <Section
+        number="04"
+        title="Reference Details"
+        description="Provide details of at least two professional referees. One must be your present or most recent employer. Work email addresses are required."
+      >
+        {referees.map((n) => (
+          <div className="repeat-card field-full" key={n}>
+            <div className="referee-card-header">
+              <h3>
+                Referee {n}
+                {n <= 2 ? ' (required)' : ' (optional)'}
+              </h3>
+
+              {n > 2 && (
+                <button
+                  type="button"
+                  className="remove-referee-button"
+                  onClick={() => removeReferee(n)}
+                  aria-label={`Remove Referee ${n}`}
+                >
+                  Remove
+                </button>
+              )}
+            </div>
+
+            <div className="field-grid">
+              <Field
+                label="Name of Employer"
+                name={`referee${n}Employer`}
+                required={n <= 2}
+              />
+
+              <Field
+                label="Referee's Full Name"
+                name={`referee${n}FullName`}
+                required={n <= 2}
+              />
+
+              <Field
+                label="Work Email Address"
+                name={`referee${n}Email`}
+                type="email"
+                required={n <= 2}
+              />
+
+              <Field
+                label="Phone No."
+                name={`referee${n}Phone`}
+                type="tel"
+              />
+
+              <Field
+                label="Address"
+                name={`referee${n}Address`}
+              />
+
+              <Field
+                label="Post Code"
+                name={`referee${n}PostCode`}
+              />
+
+              <Field
+                label="Start Date"
+                name={`referee${n}StartDate`}
+                type="date"
+              />
+
+              <Field
+                label="End Date"
+                name={`referee${n}EndDate`}
+                type="date"
+              />
+            </div>
+          </div>
+        ))}
+
+        <div className="referee-actions field-full">
+          <button
+            type="button"
+            className="add-referee-button"
+            onClick={addReferee}
+          >
+            + Add Another Referee
+          </button>
+
+          <p className="referee-help">
+            You must provide at least two professional referees.
+            You can add more referees or remove any additional referee
+            you no longer need.
+          </p>
+        </div>
+
+        <ChoiceGroup
+          legend="I permit the agency to contact the referees above"
+          name="permissionToContactReferees"
+          options={['Yes, I permit contact']}
+          type="checkbox"
+        />
       </Section>
 
       <Section number="05" title="Bank Details" description="Enter these details only if this form is being submitted through the company's approved secure channel.">
