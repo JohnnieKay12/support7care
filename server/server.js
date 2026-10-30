@@ -14,6 +14,11 @@ app.use(cors({
 }));
 app.use(express.json({ limit: '100kb' }));
 
+const recruitmentEmails = (process.env.RECRUITMENT_EMAIL || '')
+  .split(',')
+  .map(email => email.trim())
+  .filter(Boolean);
+
 const allowedKeys = new Set([
   'positionAppliedFor','title','firstName','lastName','middleNames','preferredName','nationality','dateOfBirth','currentAddress','postCode','phoneNumber','emailAddress','nationalInsuranceNumber','professionalRegistrationNumber','ukDriversLicence','ownsCar','rightToWorkUK','needsWorkPermit',
   'nextOfKinFullName','nextOfKinRelationship','nextOfKinContactNumber','nextOfKinEmail','nextOfKinPhone','nextOfKinAddress','nextOfKinPostCode',
@@ -32,7 +37,11 @@ function escapeHtml(value) {
 app.get('/api/health', (_req, res) => res.json({ ok: true }));
 app.post('/api/applications', async (req, res) => {
   try {
-    if (!process.env.RESEND_API_KEY || !process.env.FROM_EMAIL || !process.env.RECRUITMENT_EMAIL) {
+    if (
+      !process.env.RESEND_API_KEY ||
+      !process.env.FROM_EMAIL ||
+      recruitmentEmails.length === 0
+    ){
       return res.status(503).json({ message: 'Email is not configured yet. Please contact the site administrator.' });
     }
     const input = req.body;
@@ -54,7 +63,7 @@ app.post('/api/applications', async (req, res) => {
     const resend = new Resend(process.env.RESEND_API_KEY);
     const { error } = await resend.emails.send({
       from: process.env.FROM_EMAIL,
-      to: [process.env.RECRUITMENT_EMAIL],
+      to: recruitmentEmails,
       replyTo: String(application.emailAddress),
       subject: `Employment application: ${String(application.firstName)} ${String(application.lastName)} — ${String(application.positionAppliedFor)}`,
       html: `<h2>Support7Care Limited — Employment Application</h2><p>A new application was submitted through the website.</p><table style="border-collapse:collapse;width:100%;font:14px Arial,sans-serif">${rows}</table><p style="color:#666;font-size:12px">This email contains sensitive personal information. Handle it only under the company's approved data-protection and retention procedures.</p>`
